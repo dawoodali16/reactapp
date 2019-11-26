@@ -1,46 +1,55 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, { Component } from 'react';
+import './App.css';
+import Header from './Header';
+import Footer from './Footer';
+import Button from './Button';
 
 class App extends Component {
   state = {
     value1: 0,
     value2: 0,
-    value3: 0
+    value3: 0,
+    name: 'Dawood'
   };
   changeHandler = e => {
-    if (e.target.name === "value1") this.setState({ value1: e.target.value });
-    else this.setState({ value2: e.target.value });
+    if (e.target.value) {
+      const val = parseInt(e.target.value);
+      if (e.target.name === 'value1') this.setState({ value1: val });
+      else this.setState({ value2: val });
+    }
   };
 
   clear = () => {
     this.setState({ value1: 0, value2: 0 });
   };
   btnAdd = () => {
-    const add = this.value1 + this.value2;
+    const { value1, value2 } = this.state;
+    const add = value1 + value2;
     this.setState({ value3: add });
     this.clear();
   };
   btnSub = () => {
-    const sub = this.value1 - this.value2;
+    const sub = this.state.value1 - this.state.value2;
     this.setState({ value3: sub });
     this.clear();
   };
   btnMul = () => {
-    const mul = this.value1 * this.value2;
+    const mul = this.state.value1 * this.state.value2;
     this.setState({ value3: mul });
     this.clear();
   };
   btnDiv = () => {
-    const div = this.value1 / this.value2;
+    const div = this.state.value1 / this.state.value2;
     this.setState({ value3: div });
     this.clear();
   };
   render() {
-    const { value1, value2, value3 } = this.state;
+    const { value1, value2, value3, name } = this.state;
     return (
       <div>
+        <Header name={name} />
         <div className="content">
-          <h2>Hello {value3 && `${value1} ${value2}`}</h2>
+          <h2>Hello {value3 && value3}</h2>
           <label htmlFor="value1"> value1</label>
           <input
             type="number"
@@ -50,8 +59,8 @@ class App extends Component {
             name="value1"
             onChange={this.changeHandler}
           />
-          <br></br>
-          <br></br>
+          <br />
+          <br />
           <label htmlFor="value2"> value2</label>
           <input
             type="number"
@@ -61,16 +70,13 @@ class App extends Component {
             name="value2"
             onChange={this.changeHandler}
           />
-          <br></br>
-          <button onClick={this.btnAdd}> + </button>
-          <button onClick={this.btnSub}> - </button>
-          <button onClick={this.btnMul}> * </button>
-          <button onClick={this.btnDiv}> % </button>
+          <br />
+          <Button handler={this.btnAdd} sign="+" />
+          <Button handler={this.btnSub} sign="-" />
+          <Button handler={this.btnMul} sign="*" />
+          <Button handler={this.btnDiv} sign="/" />
         </div>
-
-        <div className="footer">
-          <p>Footer</p>
-        </div>
+        {value3 > 5 && <Footer result={value3} />}
       </div>
     );
   }

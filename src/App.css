@@ -37,3 +37,10 @@ body {
   background-color: #f1f1f1;
   padding: 10px;
 }
+
+header {
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+}
