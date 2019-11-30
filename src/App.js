@@ -3,79 +3,90 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 import Button from './Button';
+import TextField from './Label';
 
 class App extends Component {
   state = {
     value1: 0,
     value2: 0,
     value3: 0,
-    name: 'Dawood'
+    name: '',
+    password: ''
   };
-  changeHandler = e => {
-    if (e.target.value) {
-      const val = parseInt(e.target.value);
-      if (e.target.name === 'value1') this.setState({ value1: val });
-      else this.setState({ value2: val });
-    }
+
+  inputChangeHandler = e => {
+    const key = e.target.name;
+    let value = e.target.value;
+    const type = e.target.type;
+    if (type === 'number') value = parseInt(value);
+    this.setState({ [key]: value });
   };
 
   clear = () => {
     this.setState({ value1: 0, value2: 0 });
   };
-  btnAdd = () => {
+  calculator = sign => {
     const { value1, value2 } = this.state;
-    const add = value1 + value2;
-    this.setState({ value3: add });
+    let result = 0;
+    if (sign === '+') result = value1 + value2;
+    else if (sign === '-') result = value1 - value2;
+    else if (sign === '/') result = value1 / value2;
+    else if (sign === '*') result = value1 * value2;
+    this.setState({ value3: result });
     this.clear();
   };
-  btnSub = () => {
-    const sub = this.state.value1 - this.state.value2;
-    this.setState({ value3: sub });
-    this.clear();
-  };
-  btnMul = () => {
-    const mul = this.state.value1 * this.state.value2;
-    this.setState({ value3: mul });
-    this.clear();
-  };
-  btnDiv = () => {
-    const div = this.state.value1 / this.state.value2;
-    this.setState({ value3: div });
-    this.clear();
-  };
+
   render() {
-    const { value1, value2, value3, name } = this.state;
+    const { value1, value2, value3, name, password } = this.state;
     return (
       <div>
         <Header name={name} />
         <div className="content">
           <h2>Hello {value3 && value3}</h2>
-          <label htmlFor="value1"> value1</label>
-          <input
-            type="number"
-            id="value1"
-            value={value1}
-            placeholder="value"
+          <TextField
+            label="Hello"
+            name="name"
+            id="name"
+            value={name}
+            type="text"
+            placeholder="Name"
+            changeHandler={this.inputChangeHandler}
+          />
+          <br />
+          <TextField
+            label="password"
+            name="password"
+            value={password}
+            type="password"
+            changeHandler={this.inputChangeHandler}
+            id="password"
+          />
+          <br />
+          <TextField
+            label="value 1"
             name="value1"
-            onChange={this.changeHandler}
-          />
-          <br />
-          <br />
-          <label htmlFor="value2"> value2</label>
-          <input
+            id="val1"
+            changeHandler={this.inputChangeHandler}
             type="number"
-            id="value2"
-            value={value2}
-            placeholder="value"
-            name="value2"
-            onChange={this.changeHandler}
+            value={value1}
           />
           <br />
-          <Button handler={this.btnAdd} sign="+" />
-          <Button handler={this.btnSub} sign="-" />
-          <Button handler={this.btnMul} sign="*" />
-          <Button handler={this.btnDiv} sign="/" />
+          <br />
+          <TextField
+            label="value 2"
+            name="value2"
+            id="val2"
+            value={value2}
+            type="number"
+            changeHandler={this.inputChangeHandler}
+          />
+          <br />
+          <Button handler={this.calculator} sign="+" />
+          <Button handler={this.calculator} sign="-" />
+          <Button handler={this.calculator} sign="*" />
+          <Button handler={this.calculator} sign="/" />
         </div>
+
         {value3 > 5 && <Footer result={value3} />}
       </div>
     );
