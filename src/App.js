@@ -4,8 +4,12 @@ import Header from './Header';
 
 class App extends Component {
   render() {
-    const { list = [], field = '' } = this.state;
+    state = {
+      list = [],
+      field = ''
+    }
     return (
+      
       <div>
         <Header name={'name'} />
         <input
@@ -14,6 +18,7 @@ class App extends Component {
           onChange={this.changeField}
           placeholder="Enter Text"
         />
+        <button></button>
       </div>
     );
   }
