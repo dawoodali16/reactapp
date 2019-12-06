@@ -11,7 +11,7 @@ class App extends Component {
         <Header name={'name'} />
         <div className="content">
           {arr.map((v, i) => (
-            <button key={i}>{v}</button>
+            <h1 key={i}>{v}</h1>
           ))}
         </div>
         {arr.map((v, i) => (
