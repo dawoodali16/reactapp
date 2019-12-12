@@ -16,13 +16,10 @@ class App extends Component {
   submit = e => {
     e.preventDefault();
     const val = { title: this.state.field, isCompleted: false };
-    this.setState(
-      {
-        field: '',
-        list: [...this.state.list, val]
-      },
-      console.log('click')
-    );
+    this.setState({
+      field: '',
+      list: [...this.state.list, val]
+    });
   };
 
   doneHandler = index => {
