@@ -3,63 +3,54 @@ import moment from 'moment';
 import './App.css';
 import Header from './Header';
 import List from './List';
-
+import Footer from './Footer';
 class App extends Component {
   state = {
     list: [],
     field: ''
   };
-
-  changeField = e => {
+  onChange = e => {
     this.setState({ field: e.target.value });
   };
   submit = e => {
     e.preventDefault();
     const val = { title: this.state.field, isCompleted: false };
     this.setState({
-      field: '',
-      list: [...this.state.list, val]
+      list: [...this.state.list, val],
+      field: '  '
     });
   };
-
-  doneHandler = index => {
-    const list = this.state.list;
-    const mapResult = list.map((val, ind) => {
-      if (ind === index) {
-        val.isCompleted = !val.isCompleted;
-      }
-      return val;
-    });
-    this.setState({ list: mapResult });
-  };
-
-  removeHandler = index => {
+  delHandler = ind => {
     const list = [...this.state.list];
-    list.splice(index, 1);
+    list.splice(ind, 1);
     this.setState({ list });
   };
-
+  doneHandler = ind => {
+    const list = this.state.list;
+    const result = list.map((v, index) => {
+      if (ind === index) {
+        v.isCompleted = !v.isCompleted;
+        console.log('val ', v);
+      }
+      return v;
+    });
+    this.setState({ list: result });
+  };
   render() {
     const { list, field } = this.state;
-
     return (
       <div>
-        <Header name={moment().format('MMMM Do YYYY, HH:mm:ss')} />
+        <Header />
         <form onSubmit={this.submit}>
-          <input
-            type="text"
-            value={field}
-            onChange={this.changeField}
-            placeholder="Enter a TODO"
-          />
-          <button disabled={field ? false : true}>Submit </button>
+          <input type="text" onChange={this.onChange} value={field} />
+          <button disabled={field ? false : true}>Add Here!!</button>
         </form>
-        <ul></ul>
         <List
           list={list}
           doneHandler={this.doneHandler}
-          removeHandler={this.removeHandler}
+          delHandler={this.delHandler}
         />
+        <Footer name={moment().format('MMMM Do YYYY, h:mm:ss a')} />
       </div>
     );
   }
