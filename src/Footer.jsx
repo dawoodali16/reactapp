@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-class Footer extends Component {
-  render(name) {
-    return <div className="footer"></div>;
-  }
-}
+const Footer = props => {
+  return <footer className="footer">Calendar: {props.name}</footer>;
+};
 
 export default Footer;

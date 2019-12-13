@@ -50,7 +50,7 @@ class App extends Component {
           doneHandler={this.doneHandler}
           delHandler={this.delHandler}
         />
-        <Footer name={moment().format('MMMM Do YYYY, h:mm:ss a')} />
+        <Footer name={moment().format('MMMM Do YYYY, HH:mm:s')} />
       </div>
     );
   }

@@ -13,20 +13,18 @@ const List = ({ list, doneHandler, delHandler }) => {
           >
             {' '}
             {v.title}
-            <button
+            <i
+              className="fas fa-check"
               onClick={() => {
                 doneHandler(i);
               }}
-            >
-              Done
-            </button>
-            <button
+            ></i>
+            <i
+              className="fas fa-trash-alt"
               onClick={() => {
                 delHandler(i);
               }}
-            >
-              Delete
-            </button>
+            ></i>
           </li>
         ))}
       </ul>
