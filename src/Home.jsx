@@ -25,6 +25,7 @@ class Home extends Component {
       () => {
         if (this.state.list.length === 2)
           this.props.history.push({ pathname: '/head' });
+        console.log('History', this.props.history.push());
       }
     );
   };

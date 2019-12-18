@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Main extends Component {
   render() {
@@ -23,6 +24,9 @@ class Main extends Component {
           dolore error nostrum, aliquid voluptas dolor iusto. Perferendis,
           maiores debitis!
         </p>
+        <button>
+          <Link to="/Home">To next</Link>
+        </button>
       </div>
     );
   }

@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Main from './Main';
 import Home from './Home';
-import { About } from './About';
+import About from './About';
 import { Contact } from './Contact';
 class App extends Component {
   render() {
     return (
       <Router>
         <ul style={{ background: '#333', padding: '20px', color: 'white' }}>
-          <span>Main | </span>
-          <span>Home | </span>
-          <span>About | </span>
-          <span>Contact</span>
+          <span>
+            {' '}
+            <Link to="/">Main | </Link>
+          </span>
+          <span>
+            <Link to="/Home">Home | </Link>
+          </span>
+          <span>
+            <Link to="/About">About | </Link>{' '}
+          </span>
+          <span>
+            <Link to="/Contact">Contact | </Link>
+          </span>
         </ul>
         <Switch>
           <Route exact path="/">
