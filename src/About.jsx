@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 class About extends Component {
-  // doneHandler = () => {
-  //   history.push('/');
-  // };
+  doneHandler = () => {
+    this.props.history.push('/');
+  };
   render() {
     return (
       <div>

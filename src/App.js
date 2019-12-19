@@ -12,30 +12,34 @@ class App extends Component {
         <ul style={{ background: '#333', padding: '20px', color: 'white' }}>
           <span>
             {' '}
-            <Link to="/">Main | </Link>
+            <Link to='/'>Main | </Link>
           </span>
           <span>
-            <Link to="/Home">Home | </Link>
+            <Link to='/Home'>Home | </Link>
           </span>
           <span>
-            <Link to="/About">About | </Link>{' '}
+            <Link to='/About'>About | </Link>{' '}
           </span>
           <span>
-            <Link to="/Contact">Contact | </Link>
+            <Link to='/Contact'>Contact | </Link>
           </span>
         </ul>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Main />
           </Route>
-          <Route path="/Home">
+          <Route path='/Home'>
             <Home />
           </Route>
-          <Route path="/About">
+          <Route path='/About'>
             <About />
           </Route>
-          <Route path="/Contact">
+          <Route path='/Contact'>
             <Contact />
+            <Route exact path='/Contact/'>
+              Contact Main
+            </Route>
+            <Route path='/Contact/local'>Contact Local</Route>
           </Route>
         </Switch>
       </Router>
