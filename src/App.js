@@ -5,6 +5,7 @@ import Main from './Main';
 import Home from './Home';
 import About from './About';
 import { Contact } from './Contact';
+import UserDetails from './UserDetails';
 class App extends Component {
   render() {
     return (
@@ -31,12 +32,16 @@ class App extends Component {
           <Route path='/Home'>
             <Home />
           </Route>
+          <Route path='/About/:id'>
+            <UserDetails word='Hello Worlds' />
+          </Route>
           <Route path='/About'>
             <About />
           </Route>
+
           <Route path='/Contact'>
             <Contact />
-            <Route exact path='/Contact/'>
+            <Route exact path='/Contact'>
               Contact Main
             </Route>
             <Route path='/Contact/local'>Contact Local</Route>

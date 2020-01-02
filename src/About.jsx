@@ -1,47 +1,63 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { withRouter, Link } from 'react-router-dom';
 class About extends Component {
-  doneHandler = () => {
-    this.props.history.push('/');
+  state = {
+    data: [],
+    loading: false
   };
+  getData = () => {
+    this.setState({ loading: true });
+    const api = `http://api.github.com/users`;
+    axios(api)
+      .then(({ data }) => {
+        this.setState({ data, loading: false });
+      })
+      .catch(error => console.log(`error`, error));
+  };
+
   render() {
     return (
       <div>
-        <h1>ABOUT</h1>
-        <h4>Australia</h4>
-        <ul className="office-details">
-          <li>
-            <span>+(88) 457 87 74 87</span>
-          </li>
-          <li>
-            <span>support@solo.com</span>
-          </li>
-          <li>
-            <span>
-              507 Din Street Building 55 <br />
-              Sydney, Australia.
-            </span>
-          </li>
-        </ul>
-        <h4>United States</h4>
-        <ul class="office-details">
-          <li>
-            <span>+(55) 879 58 87 46</span>
-          </li>
-          <li>
-            <span>support@solo.com</span>
-          </li>
-          <li>
-            <span>
-              524 Mina Street Building 05
-              <br />
-              Newyork, USA.
-            </span>
-          </li>
-        </ul>
-        <button onClick={this.doneHandler}>Done</button>
+        <button disabled={this.state.loading} onClick={this.getData}>
+          GET GITHUB DATA
+        </button>
+        <div>
+          {this.state.loading ? (
+            <img
+              src={'https://giphy.com/gifs/11xBk5MoWjrYoE/html5'}
+              alt='loading'
+            ></img>
+          ) : (
+            <table>
+              {this.state.data.length ? (
+                <tr>
+                  <th>Name:</th>
+                  <th>ID:</th>
+                  <th>Node ID:</th>
+                  <th>URL:</th>
+                </tr>
+              ) : null}
+              {this.state.data.map(user => {
+                return (
+                  <tr>
+                    <td>
+                      <Link to={`/about/${user.login}`}>
+                        {user.login[0].toUpperCase() + user.login.slice(1)}
+                      </Link>
+                    </td>
+                    <td>{user.id}</td>
+                    <td>{user.node_id}</td>
+                    <td>{user.url}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          )}
+        </div>
       </div>
     );
   }
 }
+
 export default withRouter(About);

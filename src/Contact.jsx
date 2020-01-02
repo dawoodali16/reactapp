@@ -11,7 +11,8 @@ export const Contact = () => {
       <button>
         <Link to='/Contact/local'>Local</Link>
       </button>
-      {/* <div>
+
+      <div>
         <h3>Main Contact</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid rerum
@@ -28,7 +29,7 @@ export const Contact = () => {
           aspernatur ducimus. Ullam non eius, saepe harum exercitationem iusto
           porro placeat voluptas.
         </p>
-      </div> */}
+      </div>
     </>
   );
 };
