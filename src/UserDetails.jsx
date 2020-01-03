@@ -11,9 +11,21 @@ class UserDetails extends Component {
     axios(`http://api.github.com/users/${name}`).then(res => {
       this.setState({ user: res.data });
     });
+    console.log(this.props.match.params);
   }
   render() {
-    return <h1>{this.state.user.login}</h1>;
+    return (
+      <div>
+        <img
+          style={{ width: 'auto', height: 'auto' }}
+          src={this.state.user.avatar_url}
+          alt='loading'
+        ></img>
+        <h1 style={{ color: 'white' }}>{this.state.user.node_id}</h1>
+        <h1 style={{ color: 'white' }}>{this.state.user.login}</h1>
+        <h1 style={{ color: 'white' }}>{this.state.user.avatar_url}</h1>
+      </div>
+    );
   }
 }
 
