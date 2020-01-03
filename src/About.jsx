@@ -24,10 +24,7 @@ class About extends Component {
         </button>
         <div>
           {this.state.loading ? (
-            <img
-              src={'https://giphy.com/gifs/11xBk5MoWjrYoE/html5'}
-              alt='loading'
-            ></img>
+            <img alt='loading' />
           ) : (
             <table>
               {this.state.data.length ? (
