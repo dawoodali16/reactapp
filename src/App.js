@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <ul style={{ background: '#333', padding: '20px', color: 'white' }}>
-          <span>
+          <span style={{ color: 'white' }}>
             {' '}
             <Link to='/'>Main | </Link>
           </span>
